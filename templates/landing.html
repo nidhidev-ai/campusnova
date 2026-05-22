@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusNova — AI College Assistant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .gradient-text {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-bg {
+      background: radial-gradient(ellipse at top, #1e1b4b 0%, #000000 70%);
+    }
+  </style>
+</head>
+<body class="bg-black text-white">
+
+  <!-- Navbar -->
+  <nav class="border-b border-gray-800 px-6 py-4 flex items-center justify-between sticky top-0 bg-black z-50">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L13.5 8L19 6L15 10.5L21 12L15 13.5L19 18L13.5 16L12 22L10.5 16L5 18L9 13.5L3 12L9 10.5L5 6L10.5 8Z" fill="white"/>
+        </svg>
+      </div>
+      <span class="text-lg font-bold">CampusNova</span>
+    </div>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#features" class="text-sm text-gray-400 hover:text-white transition">Features</a>
+      <a href="#how-it-works" class="text-sm text-gray-400 hover:text-white transition">How it works</a>
+      <a href="#comparison" class="text-sm text-gray-400 hover:text-white transition">Why Nova</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="/admin-login" class="text-sm text-gray-400 hover:text-white transition">For Colleges</a>
+      <a href="/chat" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition">
+        Ask Nova →
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-bg min-h-screen flex items-center justify-center px-6 py-20">
+    <div class="max-w-4xl mx-auto text-center">
+
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 bg-indigo-950 border border-indigo-800 rounded-full px-4 py-2 text-sm text-indigo-300 mb-8">
+        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+        Powered by RAG Technology
+      </div>
+
+      <!-- Headline -->
+      <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6">
+        Your college documents,<br/>
+        <span class="gradient-text">now answer instantly.</span>
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
+        CampusNova helps students ask questions in plain language and receive trusted answers from official college PDFs, notices, and documents — 24/7.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+        <a href="/chat" class="bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-4 rounded-xl text-lg font-semibold transition">
+          Try Demo Chat →
+        </a>
+        <a href="/admin-login" class="border border-gray-700 hover:border-gray-500 text-white px-8 py-4 rounded-xl text-lg font-semibold transition">
+          For Colleges
+        </a>
+      </div>
+
+      <!-- Demo Chat Widget -->
+      <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 max-w-2xl mx-auto text-left">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-3 h-3 rounded-full bg-red-500"></div>
+          <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+          <div class="w-3 h-3 rounded-full bg-green-500"></div>
+          <span class="text-gray-500 text-xs ml-2">CampusNova Demo</span>
+        </div>
+
+        <!-- Demo messages -->
+        <div class="flex flex-col gap-3">
+          <div class="flex justify-end">
+            <div class="bg-indigo-600 text-white px-4 py-2 rounded-xl rounded-tr-sm text-sm max-w-xs">
+              What is the minimum attendance required?
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-7 h-7 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="text-white text-xs font-bold">CN</span>
+            </div>
+            <div class="bg-gray-800 rounded-xl rounded-tl-sm px-4 py-3 text-sm text-gray-200 max-w-sm">
+              Students must maintain a minimum attendance of <strong>75%</strong> in each subject to appear in semester examinations.
+              <div class="mt-2">
+                <span class="bg-teal-900 text-teal-300 text-xs px-2 py-1 rounded-full">Academic Rules PDF, Page 4</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-end">
+            <div class="bg-indigo-600 text-white px-4 py-2 rounded-xl rounded-tr-sm text-sm max-w-xs">
+              Is girls hostel available?
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-7 h-7 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="text-white text-xs font-bold">CN</span>
+            </div>
+            <div class="bg-gray-800 rounded-xl rounded-tl-sm px-4 py-3 text-sm text-gray-200 max-w-sm">
+              Yes! Girls hostel is available with capacity of <strong>200 students</strong>. Curfew time is 9 PM.
+              <div class="mt-2">
+                <span class="bg-teal-900 text-teal-300 text-xs px-2 py-1 rounded-full">Hostel Rules PDF, Page 2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example chips -->
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="bg-gray-800 border border-gray-700 text-gray-400 text-xs px-3 py-1 rounded-full">💰 BTech fee structure?</span>
+          <span class="bg-gray-800 border border-gray-700 text-gray-400 text-xs px-3 py-1 rounded-full">🎓 Scholarships available?</span>
+          <span class="bg-gray-800 border border-gray-700 text-gray-400 text-xs px-3 py-1 rounded-full">💼 Placement companies?</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust badges -->
+  <section class="border-y border-gray-800 py-8 px-6">
+    <div class="max-w-4xl mx-auto flex flex-wrap justify-center gap-8">
+      <div class="flex items-center gap-2 text-gray-400 text-sm">
+        <span class="text-green-400">✓</span> Powered by Official Documents
+      </div>
+      <div class="flex items-center gap-2 text-gray-400 text-sm">
+        <span class="text-green-400">✓</span> No more waiting on calls
+      </div>
+      <div class="flex items-center gap-2 text-gray-400 text-sm">
+        <span class="text-green-400">✓</span> 24/7 Student Support
+      </div>
+      <div class="flex items-center gap-2 text-gray-400 text-sm">
+        <span class="text-green-400">✓</span> Source-based answers
+      </div>
+      <div class="flex items-center gap-2 text-gray-400 text-sm">
+        <span class="text-green-400">✓</span> RAG Technology
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how-it-works" class="py-20 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-14">
+        <h2 class="text-4xl font-bold text-white mb-4">How it works</h2>
+        <p class="text-gray-400">Simple 4 step process — from document to answer!</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center">
+          <div class="text-4xl mb-4">📄</div>
+          <div class="text-indigo-400 text-sm font-semibold mb-2">Step 1</div>
+          <h3 class="text-white font-semibold mb-2">Upload Documents</h3>
+          <p class="text-gray-500 text-sm">College uploads official PDFs — prospectus, fee structure, hostel rules</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center">
+          <div class="text-4xl mb-4">🧠</div>
+          <div class="text-indigo-400 text-sm font-semibold mb-2">Step 2</div>
+          <h3 class="text-white font-semibold mb-2">Nova Reads</h3>
+          <p class="text-gray-500 text-sm">CampusNova reads, understands and stores document knowledge using RAG</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center">
+          <div class="text-4xl mb-4">💬</div>
+          <div class="text-indigo-400 text-sm font-semibold mb-2">Step 3</div>
+          <h3 class="text-white font-semibold mb-2">Student Asks</h3>
+          <p class="text-gray-500 text-sm">Student asks any question in plain simple language anytime</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center">
+          <div class="text-4xl mb-4">✅</div>
+          <div class="text-indigo-400 text-sm font-semibold mb-2">Step 4</div>
+          <h3 class="text-white font-semibold mb-2">Instant Answer</h3>
+          <p class="text-gray-500 text-sm">Nova gives accurate answer with source document and page number</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="py-20 px-6 bg-gray-950">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-14">
+        <h2 class="text-4xl font-bold text-white mb-4">Why CampusNova?</h2>
+        <p class="text-gray-400">Everything students and colleges need!</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6">
+          <div class="text-3xl mb-3">📋</div>
+          <h3 class="text-white font-semibold mb-2">Official Document Answers</h3>
+          <p class="text-gray-400 text-sm">Answers only from uploaded college documents — not random internet data</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6">
+          <div class="text-3xl mb-3">🔍</div>
+          <h3 class="text-white font-semibold mb-2">Source Transparency</h3>
+          <p class="text-gray-400 text-sm">Every answer shows document name and page number for verification</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6">
+          <div class="text-3xl mb-3">🕐</div>
+          <h3 class="text-white font-semibold mb-2">24/7 Student Support</h3>
+          <p class="text-gray-400 text-sm">Students get answers anytime without waiting for office hours</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6">
+          <div class="text-3xl mb-3">📱</div>
+          <h3 class="text-white font-semibold mb-2">Mobile Friendly</h3>
+          <p class="text-gray-400 text-sm">Students can use CampusNova from phone, tablet or laptop</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6">
+          <div class="text-3xl mb-3">📁</div>
+          <h3 class="text-white font-semibold mb-2">Easy Document Upload</h3>
+          <p class="text-gray-400 text-sm">College staff can upload PDFs, notices, fee sheets in seconds</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6">
+          <div class="text-3xl mb-3">🔒</div>
+          <h3 class="text-white font-semibold mb-2">Safe and Controlled</h3>
+          <p class="text-gray-400 text-sm">Only authorised college admins can upload or remove documents</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison -->
+  <section id="comparison" class="py-20 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-14">
+        <h2 class="text-4xl font-bold text-white mb-4">Why not just Google it?</h2>
+        <p class="text-gray-400">See how CampusNova compares!</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6">
+          <h3 class="text-gray-400 font-semibold mb-3">🔍 Google</h3>
+          <p class="text-gray-500 text-sm">Shows many links. Student has to search manually through pages.</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6">
+          <h3 class="text-gray-400 font-semibold mb-3">🌐 College Website</h3>
+          <p class="text-gray-500 text-sm">Static pages. Student has to read everything manually.</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6">
+          <h3 class="text-gray-400 font-semibold mb-3">📞 Phone Call</h3>
+          <p class="text-gray-500 text-sm">Student has to call and wait. Office closed after hours.</p>
+        </div>
+        <div class="bg-indigo-950 border border-indigo-700 rounded-2xl p-6">
+          <h3 class="text-indigo-300 font-semibold mb-3">⭐ CampusNova</h3>
+          <p class="text-gray-300 text-sm">Student asks in plain language and gets instant accurate answer from official documents — 24/7!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use cases -->
+  <section class="py-20 px-6 bg-gray-950">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-14">
+        <h2 class="text-4xl font-bold text-white mb-4">Use Cases</h2>
+        <p class="text-gray-400">CampusNova handles all types of college queries!</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-4 text-center">
+          <div class="text-2xl mb-2">📋</div>
+          <p class="text-white text-sm font-medium">Admission Enquiry</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-4 text-center">
+          <div class="text-2xl mb-2">💰</div>
+          <p class="text-white text-sm font-medium">Fee Information</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-4 text-center">
+          <div class="text-2xl mb-2">🏠</div>
+          <p class="text-white text-sm font-medium">Hostel Assistant</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-4 text-center">
+          <div class="text-2xl mb-2">🎓</div>
+          <p class="text-white text-sm font-medium">Scholarship Guide</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-4 text-center">
+          <div class="text-2xl mb-2">💼</div>
+          <p class="text-white text-sm font-medium">Placement Info</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-4 text-center">
+          <div class="text-2xl mb-2">📚</div>
+          <p class="text-white text-sm font-medium">Course Details</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-4 text-center">
+          <div class="text-2xl mb-2">📅</div>
+          <p class="text-white text-sm font-medium">Attendance Rules</p>
+        </div>
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-4 text-center">
+          <div class="text-2xl mb-2">👨‍👩‍👧</div>
+          <p class="text-white text-sm font-medium">Parent Enquiry</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 px-6">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-4xl font-bold text-white mb-4">Ready to get started?</h2>
+      <p class="text-gray-400 mb-8">Join colleges already using CampusNova to serve students better!</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/chat" class="bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-4 rounded-xl text-lg font-semibold transition">
+          Try as Student →
+        </a>
+        <a href="/admin-login" class="border border-gray-700 hover:border-gray-500 text-white px-8 py-4 rounded-xl text-lg font-semibold transition">
+          Setup for My College
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-800 py-10 px-6">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L13.5 8L19 6L15 10.5L21 12L15 13.5L19 18L13.5 16L12 22L10.5 16L5 18L9 13.5L3 12L9 10.5L5 6L10.5 8Z" fill="white"/>
+          </svg>
+        </div>
+        <span class="text-white font-semibold">CampusNova</span>
+      </div>
+      <div class="flex gap-6 text-sm text-gray-500">
+        <a href="#" class="hover:text-white transition">About</a>
+        <a href="#" class="hover:text-white transition">Contact</a>
+        <a href="#" class="hover:text-white transition">Privacy</a>
+        <a href="#" class="hover:text-white transition">Terms</a>
+      </div>
+      <p class="text-gray-600 text-sm">Built to make college information simple, trusted, and accessible.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
