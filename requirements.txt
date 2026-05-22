@@ -3,6 +3,6 @@ uvicorn
 python-multipart
 jinja2
 pypdf2
-sentence-transformers
-faiss-cpu
+scikit-learn
+numpy
 requests
