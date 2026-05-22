@@ -13,7 +13,7 @@ from sentence_transformers import SentenceTransformer
 # This converts text into numbers (vectors)
 # so we can search through them
 # ─────────────────────────────────────────
-model = SentenceTransformer('all-MiniLM-L6-v2')
+model = SentenceTransformer('paraphrase-MiniLM-L3-v2')
 
 # Where we store processed chunks
 VECTOR_STORE_PATH = "vector_store"
