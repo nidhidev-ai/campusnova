@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusNova — AI College Assistant</title>
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .chat-area { height: calc(100vh - 280px); }
+  </style>
+</head>
+<body class="bg-gray-950 text-white min-h-screen">
+
+  <!-- Header -->
+  <header class="border-b border-gray-800 px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L13.5 8L19 6L15 10.5L21 12L15 13.5L19 18L13.5 16L12 22L10.5 16L5 18L9 13.5L3 12L9 10.5L5 6L10.5 8Z" fill="white"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-lg font-bold text-white">CampusNova</h1>
+        <p class="text-xs text-gray-500">AI College Assistant</p>
+      </div>
+    </div>
+    <a href="/admin" class="text-sm text-indigo-400 hover:text-indigo-300 border border-indigo-800 px-4 py-2 rounded-lg transition">
+      Admin Portal →
+    </a>
+  </header>
+
+  <!-- Main -->
+  <main class="max-w-3xl mx-auto px-4 py-6 flex flex-col" style="height: calc(100vh - 73px);">
+
+    <!-- Welcome -->
+    <div id="welcome" class="flex flex-col items-center justify-center flex-1 text-center gap-4 pb-6">
+      <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mb-2">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L13.5 8L19 6L15 10.5L21 12L15 13.5L19 18L13.5 16L12 22L10.5 16L5 18L9 13.5L3 12L9 10.5L5 6L10.5 8Z" fill="white"/>
+        </svg>
+      </div>
+      <h2 class="text-2xl font-bold text-white">Hello! I'm CampusNova ✨</h2>
+      <p class="text-gray-400 text-sm max-w-md">Ask me anything about your college — fees, hostel, admission, courses, scholarships and more! I answer only from official college documents.</p>
+
+      <!-- Suggestion chips -->
+      <div class="flex flex-wrap gap-2 justify-center mt-2">
+        <button onclick="askQuestion('What is the BTech fee structure?')"
+          class="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 text-xs px-4 py-2 rounded-full transition">
+          💰 BTech fee structure?
+        </button>
+        <button onclick="askQuestion('Is girls hostel available?')"
+          class="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 text-xs px-4 py-2 rounded-full transition">
+          🏠 Girls hostel available?
+        </button>
+        <button onclick="askQuestion('What is the minimum attendance required?')"
+          class="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 text-xs px-4 py-2 rounded-full transition">
+          📋 Minimum attendance?
+        </button>
+        <button onclick="askQuestion('What scholarships are available?')"
+          class="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 text-xs px-4 py-2 rounded-full transition">
+          🎓 Scholarships available?
+        </button>
+        <button onclick="askQuestion('Which companies visited for placements?')"
+          class="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 text-xs px-4 py-2 rounded-full transition">
+          💼 Placement companies?
+        </button>
+      </div>
+    </div>
+
+    <!-- Chat messages -->
+    <div id="chat-messages" class="flex flex-col gap-4 overflow-y-auto flex-1 pb-4">
+    </div>
+
+    <!-- Loading indicator -->
+    <div id="loading" class="hidden">
+      <div class="flex items-center gap-3 p-4">
+        <div class="w-7 h-7 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+          <span class="text-white text-xs">CN</span>
+        </div>
+        <div class="flex gap-1">
+          <div class="w-2 h-2 bg-indigo-400 rounded-full animate-bounce"></div>
+          <div class="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style="animation-delay:0.2s"></div>
+          <div class="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style="animation-delay:0.4s"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input area -->
+    <div class="mt-auto pt-4 border-t border-gray-800">
+      <form id="chat-form"
+        hx-post="/chat"
+        hx-target="#chat-messages"
+        hx-swap="beforeend"
+        hx-indicator="#loading"
+        class="flex gap-3 items-end">
+
+        <textarea
+          name="question"
+          id="question-input"
+          rows="1"
+          placeholder="Ask about fees, hostel, admission, courses..."
+          class="flex-1 bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 outline-none focus:border-indigo-500 resize-none transition"
+          onkeydown="handleKey(event)"
+          oninput="autoResize(this)"
+        ></textarea>
+
+        <button type="submit"
+          class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-3 rounded-xl text-sm font-medium transition flex-shrink-0">
+          Ask ↑
+        </button>
+      </form>
+      <p class="text-xs text-gray-600 mt-2 text-center">
+        CampusNova answers only from official college documents
+      </p>
+    </div>
+
+  </main>
+
+  <script>
+    function askQuestion(q) {
+      document.getElementById('question-input').value = q;
+      document.getElementById('welcome').style.display = 'none';
+
+      // Add user message
+      const chatMessages = document.getElementById('chat-messages');
+      const userDiv = document.createElement('div');
+      userDiv.className = 'flex justify-end';
+      userDiv.innerHTML = `
+        <div class="bg-indigo-600 text-white px-4 py-3 rounded-xl rounded-tr-sm text-sm max-w-xs">
+          ${q}
+        </div>
+      `;
+      chatMessages.appendChild(userDiv);
+
+      // Submit form
+      htmx.trigger('#chat-form', 'submit');
+    }
+
+    function handleKey(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        document.getElementById('welcome').style.display = 'none';
+
+        // Add user message
+        const question = document.getElementById('question-input').value.trim();
+        if (!question) return;
+
+        const chatMessages = document.getElementById('chat-messages');
+        const userDiv = document.createElement('div');
+        userDiv.className = 'flex justify-end';
+        userDiv.innerHTML = `
+          <div class="bg-indigo-600 text-white px-4 py-3 rounded-xl rounded-tr-sm text-sm max-w-xs">
+            ${question}
+          </div>
+        `;
+        chatMessages.appendChild(userDiv);
+
+        document.getElementById('chat-form').dispatchEvent(new Event('submit'));
+      }
+    }
+
+    function autoResize(el) {
+      el.style.height = 'auto';
+      el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+    }
+
+    // Clear input after form submit
+    document.getElementById('chat-form').addEventListener('htmx:afterRequest', function() {
+      document.getElementById('question-input').value = '';
+      document.getElementById('question-input').style.height = 'auto';
+
+      // Scroll to bottom
+      const chatMessages = document.getElementById('chat-messages');
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    });
+  </script>
+
+</body>
+</html>
