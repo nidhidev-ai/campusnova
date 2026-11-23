@@ -1,96 +1,44 @@
 import os
-import shutil
 import requests
-from fastapi import FastAPI, Request, UploadFile, File, Form
+from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
-from rag import process_and_store_pdf, search_relevant_chunks
+from rag import process_and_store_excel, search_relevant_chunks
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
-UPLOAD_DIR = "uploads"
-os.makedirs(UPLOAD_DIR, exist_ok=True)
 
-uploaded_docs = []
+
+@app.on_event("startup")
+async def load_dataset():
+    try:
+        chunks_path = os.path.join("vector_store", "chunks.pkl")
+        if os.path.exists(chunks_path):
+            os.remove(chunks_path)
+        n = process_and_store_excel("data/campus_data.xlsx", "Campus Dataset", "General")
+        print(f"Loaded {n} rows from dataset")
+    except Exception as e:
+        print("Dataset load failed:", e)
+
+
+@app.get("/health")
+async def health():
+    return {"status": "ok"}
+
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
     with open("templates/landing.html", encoding="utf-8") as f:
-        content = f.read()
-    return HTMLResponse(content)
+        return HTMLResponse(f.read())
+
 
 @app.get("/chat", response_class=HTMLResponse)
 async def chat_page(request: Request):
     with open("templates/index.html", encoding="utf-8") as f:
-        content = f.read()
-    return HTMLResponse(content)
+        return HTMLResponse(f.read())
 
-@app.get("/admin", response_class=HTMLResponse)
-async def admin(request: Request):
-    with open("templates/admin.html", encoding="utf-8") as f:
-        content = f.read()
-    return HTMLResponse(content)
-
-@app.get("/admin-login", response_class=HTMLResponse)
-async def admin_login_page(request: Request):
-    with open("templates/admin_login.html", encoding="utf-8") as f:
-        content = f.read()
-    return HTMLResponse(content)
-
-@app.post("/admin-login", response_class=HTMLResponse)
-async def admin_login(
-    request: Request,
-    email: str = Form(...),
-    password: str = Form(...)
-):
-    if email == "admin@college.edu" and password == "admin123":
-        with open("templates/admin.html", encoding="utf-8") as f:
-            content = f.read()
-        return HTMLResponse(content)
-    else:
-        with open("templates/admin_login.html", encoding="utf-8") as f:
-            content = f.read()
-        return HTMLResponse(content + '<script>alert("Invalid! Use admin@college.edu / admin123")</script>')
-
-@app.post("/upload", response_class=HTMLResponse)
-async def upload_document(
-    request: Request,
-    file: UploadFile = File(...),
-    doc_name: str = Form(...),
-    category: str = Form(...)
-):
-    try:
-        file_path = os.path.join(UPLOAD_DIR, file.filename)
-        with open(file_path, "wb") as buffer:
-            shutil.copyfileobj(file.file, buffer)
-
-        num_chunks = process_and_store_pdf(file_path, doc_name, category)
-
-        uploaded_docs.append({
-            "name": doc_name,
-            "filename": file.filename,
-            "category": category,
-            "chunks": num_chunks,
-            "status": "Ready ✅"
-        })
-
-        html = ""
-        for doc in uploaded_docs:
-            html += f"""
-            <div class="bg-teal-800 rounded-xl p-4 flex justify-between items-center">
-                <div>
-                    <p class="font-semibold text-white">{doc['name']}</p>
-                    <p class="text-sm text-teal-300">{doc['category']} • {doc['chunks']} chunks</p>
-                </div>
-                <span class="text-green-400 text-sm font-medium">{doc['status']}</span>
-            </div>
-            """
-        return HTMLResponse(html)
-
-    except Exception as e:
-        return HTMLResponse(f'<p class="text-red-400">Error: {str(e)}</p>')
 
 @app.post("/chat", response_class=HTMLResponse)
 async def chat(request: Request, question: str = Form(...)):
@@ -100,8 +48,7 @@ async def chat(request: Request, question: str = Form(...)):
         if not relevant_chunks:
             return HTMLResponse("""
                 <div class="bg-gray-800 rounded-xl p-4">
-                    <p class="text-yellow-400">⚠️ No documents uploaded yet.</p>
-                    <p class="text-gray-400 text-sm mt-1">Please ask your college admin to upload documents first.</p>
+                    <p class="text-yellow-400">⚠️ I couldn't find this in the dataset.</p>
                 </div>
             """)
 
@@ -115,11 +62,11 @@ async def chat(request: Request, question: str = Form(...)):
 
         system_prompt = f"""You are CampusNova, an intelligent and helpful AI assistant for college students.
 Answer ONLY using the information in the context below.
-If answer not found say: "I couldn't find this in the official documents. Please contact the college office."
+If answer not found say: "I couldn't find this in the dataset. Please contact the college office."
 Be friendly, professional and student-friendly.
 Use bullet points and bold for important numbers.
 
-Context from official documents:
+Context from dataset:
 {context}"""
 
         response = requests.post(
@@ -134,7 +81,8 @@ Context from official documents:
                     {'role': 'system', 'content': system_prompt},
                     {'role': 'user', 'content': question}
                 ]
-            }
+            },
+            timeout=30
         )
 
         data = response.json()
@@ -154,7 +102,7 @@ Context from official documents:
                         <span class="text-white text-xs">CN</span>
                     </div>
                     <span class="text-white font-semibold">CampusNova</span>
-                    <span class="text-xs text-green-400 bg-green-900 px-2 py-0.5 rounded-full">From official documents</span>
+                    <span class="text-xs text-green-400 bg-green-900 px-2 py-0.5 rounded-full">From dataset</span>
                 </div>
                 <div class="text-gray-200 text-sm leading-relaxed">{answer}</div>
                 <div class="mt-3 flex flex-wrap gap-2">
