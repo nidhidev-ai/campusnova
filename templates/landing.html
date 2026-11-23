@@ -31,15 +31,9 @@
       <span class="text-lg font-bold">CampusNova</span>
     </div>
     <div class="hidden md:flex items-center gap-8">
-      <a href="#features" class="text-sm text-gray-400 hover:text-white transition">Features</a>
-      <a href="#how-it-works" class="text-sm text-gray-400 hover:text-white transition">How it works</a>
-      <a href="#comparison" class="text-sm text-gray-400 hover:text-white transition">Why Nova</a>
     </div>
     <div class="flex items-center gap-3">
-      <a href="/admin-login" class="text-sm text-gray-400 hover:text-white transition">For Colleges</a>
-      <a href="/chat" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition">
-        Ask Nova →
-      </a>
+      <a href="/chat" class="bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-4 py-2 rounded-lg transition">Try Now</a>
     </div>
   </nav>
 
@@ -50,28 +44,23 @@
       <!-- Badge -->
       <div class="inline-flex items-center gap-2 bg-indigo-950 border border-indigo-800 rounded-full px-4 py-2 text-sm text-indigo-300 mb-8">
         <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-        Powered by RAG Technology
+        Powered by RAG + LLM over a college dataset
       </div>
 
       <!-- Headline -->
       <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6">
-        Your college documents,<br/>
+        Your college questions,<br/>
         <span class="gradient-text">now answer instantly.</span>
       </h1>
 
       <!-- Subheadline -->
       <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
-        CampusNova helps students ask questions in plain language and receive trusted answers from official college PDFs, notices, and documents — 24/7.
+        CampusNova helps students ask questions in plain language and receive instant answers from the college dataset using RAG + LLM — 24/7.
       </p>
 
       <!-- CTA Buttons -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-        <a href="/chat" class="bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-4 rounded-xl text-lg font-semibold transition">
-          Try Demo Chat →
-        </a>
-        <a href="/admin-login" class="border border-gray-700 hover:border-gray-500 text-white px-8 py-4 rounded-xl text-lg font-semibold transition">
-          For Colleges
-        </a>
+        <a href="/chat" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-6 py-3 rounded-xl transition">Try CampusNova →</a>
       </div>
 
       <!-- Demo Chat Widget -->
@@ -95,9 +84,9 @@
               <span class="text-white text-xs font-bold">CN</span>
             </div>
             <div class="bg-gray-800 rounded-xl rounded-tl-sm px-4 py-3 text-sm text-gray-200 max-w-sm">
-              Students must maintain a minimum attendance of <strong>75%</strong> in each subject to appear in semester examinations.
+              Students need at least <strong>75%</strong> attendance in each subject for semester exams. Students with 65–74% can apply for condonation.
               <div class="mt-2">
-                <span class="bg-teal-900 text-teal-300 text-xs px-2 py-1 rounded-full">Academic Rules PDF, Page 4</span>
+                <span class="bg-teal-900 text-teal-300 text-xs px-2 py-1 rounded-full">From dataset: Exams</span>
               </div>
             </div>
           </div>
@@ -112,9 +101,9 @@
               <span class="text-white text-xs font-bold">CN</span>
             </div>
             <div class="bg-gray-800 rounded-xl rounded-tl-sm px-4 py-3 text-sm text-gray-200 max-w-sm">
-              Yes! Girls hostel is available with capacity of <strong>200 students</strong>. Curfew time is 9 PM.
+              Yes! Separate hostels are available for boys and girls. The girls' hostel gate closes at <strong>8:00 PM</strong>.
               <div class="mt-2">
-                <span class="bg-teal-900 text-teal-300 text-xs px-2 py-1 rounded-full">Hostel Rules PDF, Page 2</span>
+                <span class="bg-teal-900 text-teal-300 text-xs px-2 py-1 rounded-full">From dataset: Hostel</span>
               </div>
             </div>
           </div>
@@ -134,7 +123,7 @@
   <section class="border-y border-gray-800 py-8 px-6">
     <div class="max-w-4xl mx-auto flex flex-wrap justify-center gap-8">
       <div class="flex items-center gap-2 text-gray-400 text-sm">
-        <span class="text-green-400">✓</span> Powered by Official Documents
+        <span class="text-green-400">✓</span> Powered by College Dataset
       </div>
       <div class="flex items-center gap-2 text-gray-400 text-sm">
         <span class="text-green-400">✓</span> No more waiting on calls
@@ -143,7 +132,7 @@
         <span class="text-green-400">✓</span> 24/7 Student Support
       </div>
       <div class="flex items-center gap-2 text-gray-400 text-sm">
-        <span class="text-green-400">✓</span> Source-based answers
+        <span class="text-green-400">✓</span> Grounded answers
       </div>
       <div class="flex items-center gap-2 text-gray-400 text-sm">
         <span class="text-green-400">✓</span> RAG Technology
@@ -162,14 +151,14 @@
         <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center">
           <div class="text-4xl mb-4">📄</div>
           <div class="text-indigo-400 text-sm font-semibold mb-2">Step 1</div>
-          <h3 class="text-white font-semibold mb-2">Upload Documents</h3>
-          <p class="text-gray-500 text-sm">College uploads official PDFs — prospectus, fee structure, hostel rules</p>
+          <h3 class="text-white font-semibold mb-2">College Dataset</h3>
+          <p class="text-gray-500 text-sm">College info — fees, hostel, exams, placements — is stored in an Excel sheet</p>
         </div>
         <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center">
           <div class="text-4xl mb-4">🧠</div>
           <div class="text-indigo-400 text-sm font-semibold mb-2">Step 2</div>
           <h3 class="text-white font-semibold mb-2">Nova Reads</h3>
-          <p class="text-gray-500 text-sm">CampusNova reads, understands and stores document knowledge using RAG</p>
+          <p class="text-gray-500 text-sm">Each row is turned into a searchable chunk, so the best rows can be found for any question</p>
         </div>
         <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center">
           <div class="text-4xl mb-4">💬</div>
@@ -181,7 +170,7 @@
           <div class="text-4xl mb-4">✅</div>
           <div class="text-indigo-400 text-sm font-semibold mb-2">Step 4</div>
           <h3 class="text-white font-semibold mb-2">Instant Answer</h3>
-          <p class="text-gray-500 text-sm">Nova gives accurate answer with source document and page number</p>
+          <p class="text-gray-500 text-sm">The LLM writes a clear answer using only the retrieved rows of the dataset</p>
         </div>
       </div>
     </div>
@@ -197,13 +186,13 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6">
           <div class="text-3xl mb-3">📋</div>
-          <h3 class="text-white font-semibold mb-2">Official Document Answers</h3>
-          <p class="text-gray-400 text-sm">Answers only from uploaded college documents — not random internet data</p>
+          <h3 class="text-white font-semibold mb-2">Dataset-Based Answers</h3>
+          <p class="text-gray-400 text-sm">Answers only from the college dataset — not random internet data</p>
         </div>
         <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6">
           <div class="text-3xl mb-3">🔍</div>
-          <h3 class="text-white font-semibold mb-2">Source Transparency</h3>
-          <p class="text-gray-400 text-sm">Every answer shows document name and page number for verification</p>
+          <h3 class="text-white font-semibold mb-2">Honest Answers</h3>
+          <p class="text-gray-400 text-sm">If the answer is not in the dataset, Nova says so instead of guessing</p>
         </div>
         <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6">
           <div class="text-3xl mb-3">🕐</div>
@@ -217,13 +206,13 @@
         </div>
         <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6">
           <div class="text-3xl mb-3">📁</div>
-          <h3 class="text-white font-semibold mb-2">Easy Document Upload</h3>
-          <p class="text-gray-400 text-sm">College staff can upload PDFs, notices, fee sheets in seconds</p>
+          <h3 class="text-white font-semibold mb-2">Easy to Update</h3>
+          <p class="text-gray-400 text-sm">Just edit the Excel sheet — no retraining of the model needed</p>
         </div>
         <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6">
           <div class="text-3xl mb-3">🔒</div>
-          <h3 class="text-white font-semibold mb-2">Safe and Controlled</h3>
-          <p class="text-gray-400 text-sm">Only authorised college admins can upload or remove documents</p>
+          <h3 class="text-white font-semibold mb-2">No Hallucination</h3>
+          <p class="text-gray-400 text-sm">The LLM is told to answer only from the retrieved dataset rows</p>
         </div>
       </div>
     </div>
@@ -251,7 +240,7 @@
         </div>
         <div class="bg-indigo-950 border border-indigo-700 rounded-2xl p-6">
           <h3 class="text-indigo-300 font-semibold mb-3">⭐ CampusNova</h3>
-          <p class="text-gray-300 text-sm">Student asks in plain language and gets instant accurate answer from official documents — 24/7!</p>
+          <p class="text-gray-300 text-sm">Student asks in plain language and gets an instant, accurate answer from the college dataset — 24/7!</p>
         </div>
       </div>
     </div>
@@ -305,14 +294,9 @@
   <section class="py-20 px-6">
     <div class="max-w-2xl mx-auto text-center">
       <h2 class="text-4xl font-bold text-white mb-4">Ready to get started?</h2>
-      <p class="text-gray-400 mb-8">Join colleges already using CampusNova to serve students better!</p>
+      <p class="text-gray-400 mb-8">Ask anything about admissions, fees, hostel, exams or placements.</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/chat" class="bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-4 rounded-xl text-lg font-semibold transition">
-          Try as Student →
-        </a>
-        <a href="/admin-login" class="border border-gray-700 hover:border-gray-500 text-white px-8 py-4 rounded-xl text-lg font-semibold transition">
-          Setup for My College
-        </a>
+        <a href="/chat" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-6 py-3 rounded-xl transition">Try CampusNova →</a>
       </div>
     </div>
   </section>
