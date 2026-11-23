@@ -50,29 +50,42 @@ def chunk_text(text: str, chunk_size: int = 500) -> list:
 # ─────────────────────────────────────────
 # STEP 3: Store chunks
 # ─────────────────────────────────────────
-def process_and_store_pdf(pdf_path: str, doc_name: str, category: str):
-    text = extract_text_from_pdf(pdf_path)
-    chunks = chunk_text(text)
+import pandas as pd
+
+def process_and_store_excel(file_path: str, doc_name: str, category: str):
+    if file_path.lower().endswith(".csv"):
+        df = pd.read_csv(file_path)
+    else:
+        df = pd.read_excel(file_path)
+
+    df = df.dropna(how="all").fillna("")
+
+    chunks = []
+    for i, row in df.iterrows():
+        parts = [f"{col}: {str(val).strip()}"
+                 for col, val in row.items() if str(val).strip()]
+        if parts:
+            chunks.append(f"[Row {i+2}] " + " | ".join(parts))
 
     chunks_path = os.path.join(VECTOR_STORE_PATH, "chunks.pkl")
-
     if os.path.exists(chunks_path):
-        with open(chunks_path, 'rb') as f:
+        with open(chunks_path, "rb") as f:
             stored_chunks = pickle.load(f)
     else:
         stored_chunks = []
 
     for chunk in chunks:
         stored_chunks.append({
-            'text': str(chunk),
-            'doc_name': str(doc_name),
-            'category': str(category)
+            "text": chunk,
+            "doc_name": str(doc_name),
+            "category": str(category)
         })
 
-    with open(chunks_path, 'wb') as f:
+    with open(chunks_path, "wb") as f:
         pickle.dump(stored_chunks, f)
 
     return len(chunks)
+   
 
 # ─────────────────────────────────────────
 # STEP 4: Search relevant chunks
